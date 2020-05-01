@@ -41,7 +41,7 @@ jobs:
 
       - name: set poetry config
         shell: bash
-        run: poetry config settings.virtualenvs.in-project true
+        run: poetry config virtualenvs.in-project true
 
       - name: set up cache
         uses: actions/cache@v1
