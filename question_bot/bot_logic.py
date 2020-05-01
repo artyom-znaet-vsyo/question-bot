@@ -11,7 +11,7 @@ bot.
 
 import logging
 
-from telegram.ext import Updater, CommandHandler, MessageHandler, Filters
+from telegram.ext import CommandHandler, Filters, MessageHandler, Updater
 
 from question_bot.config import BotConfig
 
