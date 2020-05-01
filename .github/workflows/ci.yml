@@ -1,0 +1,46 @@
+name: CI
+
+on: [push]
+
+jobs:
+  test:
+    run-on: ubuntu-latest
+
+  steps:
+    - uses: actions/checkout@v1
+      with:
+        fetch-depth: 1
+
+    - name: set up python 3.8
+      uses: actions/setup-python@v1
+      with:
+        python-version: 3.8
+    
+    - name: install poetry
+      uses: dschep/install-poetry-action@v1.2
+    
+    - name: cache poetry venv
+      uses: actions/cache@v1
+      id: cache
+      with:
+        path: ~/.virtualenvs
+        key: poetry-${{ hashFiles('**/poetry.lock') }}
+        restore-keys:
+          poetry-${{ hashFiles('**/poetry.lock') }}
+    
+    - name: set poetry config
+      run: |
+        poetry config settings.virtualenvs.in-project false
+        poetry config settings.virtualenvs.path ~/.virtuaelnvs
+    
+    - name: install deps
+      run: poetry install
+      if: steps.cache.outputs.cache-hit != 'true'
+    
+    - name: code quality
+      run: poetry run black . --check
+
+    - name: run py.test
+      env:
+        TOKEN: bullshit
+      run: poetry run pytest --cov . -n 2
