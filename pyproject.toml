@@ -1,3 +1,7 @@
+[tool.black]
+skip_string_normalization = true
+line_length = 100
+
 [tool.poetry]
 name = "question-bot"
 version = "0.1.0"
