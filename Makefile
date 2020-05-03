@@ -1,5 +1,5 @@
 SRC_DIR = question_bot
-SERVICE_TAG = question_bot:latest 
+SERVICE_TAG = question_bot:latest
 
 poetry-shell:
 	set -a && source ./.env && \
