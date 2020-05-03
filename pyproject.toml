@@ -8,6 +8,9 @@ version = "0.1.0"
 description = ""
 authors = ["Igor Mosyagin <garik@mosyag.in>"]
 
+[tool.poetry.plugins.console_scripts]
+questions_collector = "question_bot.console:cli"
+
 [tool.poetry.dependencies]
 python = "^3.8"
 requests = "^2.23.0"
